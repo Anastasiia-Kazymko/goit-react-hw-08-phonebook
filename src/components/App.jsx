@@ -1,23 +1,23 @@
 import React from 'react';
+import { nanoid } from 'nanoid';
+import initialContacts from '../contacts.json';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
 
 export class Phonebook extends React.Component {
   state = {
-    contacts: [],
-    name: '',
+    contacts: initialContacts,
   };
 
-  handleChange = e => {
-    this.setState({ name: e.currentTarget.value });
-  };
-
-  addContact = e => {
-    e.preventDefault();
-    console.log(this.state);
-    this.props.addContact(this.state.name);
-    this.setState({ name: '' });
+  addContact = name => {
+    const contact = {
+      id: nanoid(),
+      name,
+    };
+    this.setState(prevState => ({
+      contacts: [contact, ...prevState.contacts],
+    }));
   };
 
   render() {
@@ -33,13 +33,10 @@ export class Phonebook extends React.Component {
         }}
       >
         <h1>Phonebook</h1>
-        <ContactForm
-          handleChange={this.handleChange}
-          addContact={this.addContact}
-        />
+        <ContactForm onSubmit={this.addContact} />
         <h2>Contacts</h2>
         <Filter />
-        <ContactList name={this.state.name} />
+        <ContactList contacts={this.state.contacts} />
       </div>
     );
   }
