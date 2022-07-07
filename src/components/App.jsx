@@ -8,6 +8,7 @@ import { Filter } from 'components/Filter/Filter';
 export class Phonebook extends React.Component {
   state = {
     contacts: initialContacts,
+    filter: '',
   };
 
   addContact = name => {
