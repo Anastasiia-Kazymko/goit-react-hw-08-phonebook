@@ -6,7 +6,7 @@ import * as yup from 'yup';
 
 let schema = yup.object().shape({
   name: yup.string().required(),
-  age: yup.number().required().integer(),
+  number: yup.number().required(),
 });
 
 const initialValues = {
@@ -16,7 +16,6 @@ const initialValues = {
 
 export class ContactForm extends React.Component {
   handleSubmit = (values, { resetForm }) => {
-    console.log(values.name, values.number);
     this.props.onSubmit(values.name, values.number);
     resetForm();
   };

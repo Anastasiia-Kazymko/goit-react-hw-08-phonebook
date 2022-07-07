@@ -25,6 +25,14 @@ export class Phonebook extends React.Component {
     this.setState({ filter: e.currentTarget.value });
   };
 
+  filteredContacts = () => {
+    const { contacts, filter } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
+  };
+
   render() {
     return (
       <div
@@ -40,8 +48,8 @@ export class Phonebook extends React.Component {
         <h1>Phonebook</h1>
         <ContactForm onSubmit={this.addContact} />
         <h2>Contacts</h2>
-        <Filter onFilter={this.onFilter} />
-        <ContactList contacts={this.state.contacts} />
+        <Filter onFilter={this.onFilter} value={this.state.filter} />
+        <ContactList contacts={this.filteredContacts()} />
       </div>
     );
   }
