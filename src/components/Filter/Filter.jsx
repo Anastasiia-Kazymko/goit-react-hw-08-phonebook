@@ -1,3 +1,3 @@
-export const Filter = ({ title, good, neutral, bad, total, positive }) => {
-  return <></>;
+export const Filter = ({ onFilter }) => {
+  return <input type="text" name="filter" onChange={onFilter} />;
 };

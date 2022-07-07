@@ -11,14 +11,18 @@ export class Phonebook extends React.Component {
     filter: '',
   };
 
-  addContact = name => {
+  addContact = (name, number) => {
     const contact = {
       id: nanoid(),
       name,
+      number,
     };
     this.setState(prevState => ({
       contacts: [contact, ...prevState.contacts],
     }));
+  };
+  onFilter = e => {
+    this.setState({ filter: e.currentTarget.value });
   };
 
   render() {
@@ -36,7 +40,7 @@ export class Phonebook extends React.Component {
         <h1>Phonebook</h1>
         <ContactForm onSubmit={this.addContact} />
         <h2>Contacts</h2>
-        <Filter />
+        <Filter onFilter={this.onFilter} />
         <ContactList contacts={this.state.contacts} />
       </div>
     );
