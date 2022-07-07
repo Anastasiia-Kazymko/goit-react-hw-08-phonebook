@@ -17,6 +17,12 @@ export class Phonebook extends React.Component {
       name,
       number,
     };
+    const addedСontank = this.state.contacts.find(
+      contact => contact.name === name
+    );
+    if (addedСontank) {
+      return alert(`${name} is already in contacts`);
+    }
     this.setState(prevState => ({
       contacts: [contact, ...prevState.contacts],
     }));
@@ -33,6 +39,13 @@ export class Phonebook extends React.Component {
     );
   };
 
+  deleteContact = contactId => {
+    this.setState(prevState => {
+      return {
+        contacts: prevState.contacts.filter(({ id }) => id !== contactId),
+      };
+    });
+  };
   render() {
     return (
       <div
@@ -49,7 +62,10 @@ export class Phonebook extends React.Component {
         <ContactForm onSubmit={this.addContact} />
         <h2>Contacts</h2>
         <Filter onFilter={this.onFilter} value={this.state.filter} />
-        <ContactList contacts={this.filteredContacts()} />
+        <ContactList
+          contacts={this.filteredContacts()}
+          deleteContact={this.deleteContact}
+        />
       </div>
     );
   }
