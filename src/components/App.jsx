@@ -46,6 +46,21 @@ export class Phonebook extends React.Component {
       };
     });
   };
+
+  componentDidMount() {
+    console.log(JSON.parse(localStorage.getItem('contacts')));
+    const contacts = JSON.parse(localStorage.getItem('contacts'));
+    if (contacts !== null) {
+      this.setState({ contacts: contacts });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
   render() {
     return (
       <div>
