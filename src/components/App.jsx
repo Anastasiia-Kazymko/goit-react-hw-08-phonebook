@@ -48,7 +48,7 @@ export class Phonebook extends React.Component {
   };
 
   componentDidMount() {
-    console.log(JSON.parse(localStorage.getItem('contacts')));
+    //console.log(JSON.parse(localStorage.getItem('contacts')));
     const contacts = JSON.parse(localStorage.getItem('contacts'));
     if (contacts !== null) {
       this.setState({ contacts: contacts });
