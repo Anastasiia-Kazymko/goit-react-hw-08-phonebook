@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 
@@ -19,6 +20,7 @@ export default function ContactForm({ onSubmit }) {
     onSubmit(values.name, values.number);
     resetForm();
   };
+
   return (
     <Formik
       initialValues={initialValues}
@@ -49,3 +51,6 @@ export default function ContactForm({ onSubmit }) {
     </Formik>
   );
 }
+ContactForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};

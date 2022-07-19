@@ -1,3 +1,6 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
 export const ContactList = ({ contacts, deleteContact }) => {
   return (
     <>
@@ -18,4 +21,11 @@ export const ContactList = ({ contacts, deleteContact }) => {
       </ul>
     </>
   );
+};
+ContactList.propTypes = {
+  contacts: PropTypes.array,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  number: PropTypes.string,
+  deleteContact: PropTypes.func.isRequired,
 };
