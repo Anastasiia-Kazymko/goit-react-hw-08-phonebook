@@ -1,3 +1,6 @@
+/* import React from 'react';
+import PropTypes from 'prop-types'; */
+
 export const Filter = ({ onFilter, value }) => {
   return (
     <>
@@ -6,3 +9,9 @@ export const Filter = ({ onFilter, value }) => {
     </>
   );
 };
+
+/* Filter.propTypes = {
+  value: PropTypes.string.isRequired,
+  onFilter: PropTypes.func.isRequired,
+};
+ */
