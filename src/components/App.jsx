@@ -1,22 +1,28 @@
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
 //import initialContacts from '../contacts.json';
 import ContactForm from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
+import { addContact, deleteContact } from '../redux/store';
 
 export default function Phonebook() {
-  const [contacts, setContacts] = useState(() => {
+  const dispatch = useDispatch();
+  const items = useSelector(state => state.contact.items);
+  const filter = useSelector(state => state.contact.filter);
+  //console.log(items, filter);
+  /* const [contacts, setContacts] = useState(() => {
     return JSON.parse(localStorage.getItem('contacts')) ?? [];
   });
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState(''); */
 
   useEffect(() => {
-    window.localStorage.setItem('contacts', JSON.stringify(contacts));
+    window.localStorage.setItem('contacts', JSON.stringify(items));
   });
 
   const addContact = (name, number) => {
-    const addedСontank = contacts.find(contact => contact.name === name);
+    const addedСontank = items.find(contact => contact.name === name);
 
     if (addedСontank) {
       return alert(`${name} is already in contacts`);
@@ -26,8 +32,6 @@ export default function Phonebook() {
       name,
       number,
     };
-
-    setContacts(prevContacts => [newContact, ...prevContacts]);
   };
 
   const onFilter = e => {
@@ -35,13 +39,13 @@ export default function Phonebook() {
   };
 
   const filteredContacts = () => {
-    return contacts.filter(contact =>
+    return items.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
 
   const deleteContact = contactId => {
-    setContacts(contacts.filter(({ id }) => id !== contactId));
+    setContacts(items.filter(({ id }) => id !== contactId));
   };
   return (
     <div>

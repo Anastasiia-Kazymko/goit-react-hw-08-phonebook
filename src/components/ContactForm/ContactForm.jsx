@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 
-//import { Title, Rating } from 'components/Statistics/Statistics.styled';
-
 let schema = yup.object().shape({
   name: yup.string().required(),
   number: yup.number().required(),
