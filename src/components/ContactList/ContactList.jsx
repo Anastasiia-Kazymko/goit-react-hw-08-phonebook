@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 export const ContactList = () => {
   const contacts = useSelector(state => state.contacts);
   const dispatch = useDispatch();
+  console.log(contacts);
 
   return (
     <>
@@ -27,6 +28,7 @@ export const ContactList = () => {
     </>
   );
 };
+
 ContactList.propTypes = {
   contacts: PropTypes.array,
   id: PropTypes.string,
