@@ -1,7 +1,10 @@
-import React from 'react';
+//import React from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteContact } from '../../redux/contactsSlice';
 import PropTypes from 'prop-types';
 
-export const ContactList = ({ contacts, deleteContact }) => {
+export const ContactList = ({ contacts }) => {
+  const dispatch = useDispatch();
   return (
     <>
       <ul>
@@ -11,7 +14,7 @@ export const ContactList = ({ contacts, deleteContact }) => {
             <button
               type="Submit"
               onClick={() => {
-                deleteContact(id);
+                dispatch(deleteContact(id));
               }}
             >
               Delete
