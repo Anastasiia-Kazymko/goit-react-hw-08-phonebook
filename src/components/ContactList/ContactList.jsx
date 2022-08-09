@@ -1,10 +1,12 @@
 //import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from '../../redux/contactsSlice';
 import PropTypes from 'prop-types';
 
-export const ContactList = ({ contacts }) => {
+export const ContactList = () => {
+  const contacts = useSelector(state => state.contacts);
   const dispatch = useDispatch();
+
   return (
     <>
       <ul>
@@ -30,5 +32,4 @@ ContactList.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   number: PropTypes.string,
-  deleteContact: PropTypes.func.isRequired,
 };

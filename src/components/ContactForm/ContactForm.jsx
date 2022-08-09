@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
+import { nanoid } from 'nanoid';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { addContact } from '../../redux/contactsSlice';
@@ -53,6 +53,3 @@ export default function ContactForm() {
     </Formik>
   );
 }
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
