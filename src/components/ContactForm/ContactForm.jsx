@@ -1,8 +1,6 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
-import { addContact } from '../../redux/contactsSlice';
 
 let schema = yup.object().shape({
   name: yup.string().required(),
@@ -14,11 +12,9 @@ const initialValues = {
   number: '',
 };
 
-export default function ContactForm() {
-  const dispatch = useDispatch();
-
+export const ContactForm = ({ addContact }) => {
   const handleSubmit = (values, { resetForm }) => {
-    dispatch(addContact(values.name, values.number));
+    addContact(values);
     resetForm();
   };
 
@@ -51,4 +47,4 @@ export default function ContactForm() {
       </Form>
     </Formik>
   );
-}
+};
