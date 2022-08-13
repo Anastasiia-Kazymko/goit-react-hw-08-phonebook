@@ -14,7 +14,6 @@ export default function Phonebook() {
   const dispatch = useDispatch();
 
   const addContact = (name, number) => {
-    console.log(name, number);
     const addedСontank = contacts.find(contact => contact.name === name);
     if (addedСontank) {
       return alert(`${name} is already in contacts`);
@@ -26,7 +25,6 @@ export default function Phonebook() {
     dispatch(filteredContacts(e.currentTarget.value.trim()));
   };
   const filterContacts = () => {
-    console.log(contacts);
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
