@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import { addNewContact } from '../redux/contactsSlice';
 import { filteredContacts } from '../redux/filterSlise';
 //import initialContacts from '../contacts.json';
-import { ContactForm } from 'components/ContactForm/ContactForm';
+import ContactForm from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
 
@@ -13,7 +13,7 @@ export default function Phonebook() {
 
   const dispatch = useDispatch();
 
-  const addContact = ({ name, number }) => {
+  const addContact = (name, number) => {
     console.log(name, number);
     const addedСontank = contacts.find(contact => contact.name === name);
     if (addedСontank) {
@@ -26,6 +26,7 @@ export default function Phonebook() {
     dispatch(filteredContacts(e.currentTarget.value.trim()));
   };
   const filterContacts = () => {
+    console.log(contacts);
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );

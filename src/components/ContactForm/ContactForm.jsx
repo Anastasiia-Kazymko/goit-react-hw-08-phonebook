@@ -12,9 +12,9 @@ const initialValues = {
   number: '',
 };
 
-export const ContactForm = ({ addContact }) => {
+export default function ContactForm({ onSubmit }) {
   const handleSubmit = (values, { resetForm }) => {
-    addContact(values);
+    onSubmit(values.name, values.number);
     resetForm();
   };
 
@@ -47,4 +47,4 @@ export const ContactForm = ({ addContact }) => {
       </Form>
     </Formik>
   );
-};
+}
