@@ -1,35 +1,36 @@
 //import React from 'react';
-import { useDispatch } from 'react-redux';
-import { deleteContact } from '../../redux/contactsSlice';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { getFilter } from '../../redux/filterSlise';
+import {
+  useFetchContactsQuery,
+  useDeleteContactMutation,
+} from '../../redux/contactsAPI';
 
-export const ContactList = ({ contacts }) => {
-  const dispatch = useDispatch();
+export const ContactList = () => {
+  const { data: contacts } = useFetchContactsQuery();
+  const filter = useSelector(getFilter);
+  const [deleteContact] = useDeleteContactMutation();
+
+  const filterContacts = contacts?.filter(contact =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
 
   return (
-    <>
-      <ul>
-        {contacts.map(({ id, name, number }) => (
+    <ul>
+      {contacts &&
+        filterContacts.map(({ id, name, phone }) => (
           <li key={id}>
-            {name}: {number}
+            {name}: {phone}
             <button
-              type="Submit"
+              type="button"
               onClick={() => {
-                dispatch(deleteContact(id));
+                deleteContact(id);
               }}
             >
               Delete
             </button>
           </li>
         ))}
-      </ul>
-    </>
+    </ul>
   );
-};
-
-ContactList.propTypes = {
-  contacts: PropTypes.array,
-  id: PropTypes.string,
-  name: PropTypes.string,
-  number: PropTypes.string,
 };

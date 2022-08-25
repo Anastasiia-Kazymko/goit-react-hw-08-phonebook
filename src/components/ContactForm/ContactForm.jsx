@@ -1,20 +1,30 @@
-import React from 'react';
+import {
+  useFetchContactsQuery,
+  useAddContactMutation,
+} from '../../redux/contactsAPI';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 
 let schema = yup.object().shape({
   name: yup.string().required(),
-  number: yup.number().required(),
+  phone: yup.number().required(),
 });
 
-const initialValues = {
-  name: '',
-  number: '',
-};
+export const ContactForm = () => {
+  const initialValues = {
+    name: '',
+    phone: '',
+  };
+  const [addContact] = useAddContactMutation();
+  const { data: contacts } = useFetchContactsQuery();
 
-export default function ContactForm({ onSubmit }) {
   const handleSubmit = (values, { resetForm }) => {
-    onSubmit(values.name, values.number);
+    const { name, phone } = values;
+    const addedСontank = contacts.find(contact => contact.name === name);
+    if (addedСontank) {
+      return alert(`${name} is already in contacts`);
+    }
+    addContact({ name, phone });
     resetForm();
   };
 
@@ -36,15 +46,15 @@ export default function ContactForm({ onSubmit }) {
         <ErrorMessage name="name" />
         <h3>Number</h3>
         <Field
-          type="tel"
-          name="number"
+          type="phone"
+          name="phone"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
         />
-        <ErrorMessage name="number" />
+        <ErrorMessage name="phone" />
         <button type="submit">Add contact</button>
       </Form>
     </Formik>
   );
-}
+};

@@ -10,4 +10,7 @@ export const filter = createSlice({
   },
 });
 
+export default filter.reducer;
+export const getFilter = state => state.filter;
 export const { filteredContacts } = filter.actions;
+console.log();
