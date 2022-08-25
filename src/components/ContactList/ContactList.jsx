@@ -1,10 +1,10 @@
-//import React from 'react';
 import { useSelector } from 'react-redux';
 import { getFilter } from '../../redux/filterSlise';
 import {
   useFetchContactsQuery,
   useDeleteContactMutation,
 } from '../../redux/contactsAPI';
+import { Item, DelButton } from './ContactList.styled';
 
 export const ContactList = () => {
   const { data: contacts } = useFetchContactsQuery();
@@ -19,17 +19,17 @@ export const ContactList = () => {
     <ul>
       {contacts &&
         filterContacts.map(({ id, name, phone }) => (
-          <li key={id}>
+          <Item key={id}>
             {name}: {phone}
-            <button
+            <DelButton
               type="button"
               onClick={() => {
                 deleteContact(id);
               }}
             >
               Delete
-            </button>
-          </li>
+            </DelButton>
+          </Item>
         ))}
     </ul>
   );

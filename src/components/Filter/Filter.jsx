@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { filteredContacts, getFilter } from '../../redux/filterSlise';
+import { FilterInput } from './Filter.styled';
 
 export const Filter = () => {
   const filter = useSelector(getFilter);
@@ -8,7 +9,7 @@ export const Filter = () => {
   return (
     <>
       <p>Find contacts by name</p>
-      <input
+      <FilterInput
         type="text"
         name="filter"
         value={filter}

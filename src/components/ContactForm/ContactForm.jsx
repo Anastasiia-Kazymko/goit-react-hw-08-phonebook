@@ -2,8 +2,9 @@ import {
   useFetchContactsQuery,
   useAddContactMutation,
 } from '../../redux/contactsAPI';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import { FormWrapper, AddButton, Input } from './ContactForm.styled';
 
 let schema = yup.object().shape({
   name: yup.string().required(),
@@ -34,9 +35,9 @@ export const ContactForm = () => {
       validationSchema={schema}
       onSubmit={handleSubmit}
     >
-      <Form>
+      <FormWrapper>
         <h3>Name</h3>
-        <Field
+        <Input
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -45,7 +46,7 @@ export const ContactForm = () => {
         />
         <ErrorMessage name="name" />
         <h3>Number</h3>
-        <Field
+        <Input
           type="phone"
           name="phone"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -53,8 +54,8 @@ export const ContactForm = () => {
           required
         />
         <ErrorMessage name="phone" />
-        <button type="submit">Add contact</button>
-      </Form>
+        <AddButton type="submit">Add contact</AddButton>
+      </FormWrapper>
     </Formik>
   );
 };
