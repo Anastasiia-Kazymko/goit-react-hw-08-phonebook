@@ -27,30 +27,32 @@ export default function LoginView() {
 
   return (
     <div>
-      <h1>Страница логина</h1>
+      <h1>Log in form</h1>
 
       <form onSubmit={handleSubmit} autoComplete="off">
         <label>
-          Почта
+          email
           <input
             type="email"
             name="email"
+            placeholder="example@email.com"
             value={email}
             onChange={handleChange}
           />
         </label>
 
         <label>
-          Пароль
+          password
           <input
             type="password"
             name="password"
+            placeholder="password"
             value={password}
             onChange={handleChange}
           />
         </label>
 
-        <button type="submit">Войти</button>
+        <button type="submit">Log in</button>
       </form>
     </div>
   );

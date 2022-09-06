@@ -1,14 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useAuth } from 'hooks';
+//import { useAuth } from 'hooks';
 
 const Navigation = () => {
-  const { isLoggedIn } = useAuth();
+  //const { isLoggedIn } = useAuth();
 
   return (
     <nav>
-      <NavLink to="/">Главная</NavLink>
-      {isLoggedIn && <NavLink to="/phonebook">Phonebook</NavLink>}
+      <NavLink to="/">Home</NavLink>
+      <NavLink to="/phonebook">Phonebook</NavLink>
+      {/* isLoggedIn && <NavLink to="/phonebook">Phonebook</NavLink> */}
     </nav>
   );
 };

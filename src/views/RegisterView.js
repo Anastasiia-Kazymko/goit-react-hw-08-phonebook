@@ -33,13 +33,19 @@ export default function RegisterView() {
   return (
     <div>
       <Helmet>
-        <title>Страница регистрации</title>
+        <title>Registration</title>
       </Helmet>
 
       <form onSubmit={handleSubmit} autoComplete="off">
         <label>
           Имя
-          <input type="text" name="name" value={name} onChange={handleChange} />
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={name}
+            onChange={handleChange}
+          />
         </label>
 
         <label>
@@ -47,6 +53,7 @@ export default function RegisterView() {
           <input
             type="email"
             name="email"
+            placeholder="example@email.com"
             value={email}
             onChange={handleChange}
           />
@@ -57,12 +64,13 @@ export default function RegisterView() {
           <input
             type="password"
             name="password"
+            placeholder="password"
             value={password}
             onChange={handleChange}
           />
         </label>
 
-        <button type="submit">Зарегистрироваться</button>
+        <button type="submit">Registration</button>
       </form>
     </div>
   );

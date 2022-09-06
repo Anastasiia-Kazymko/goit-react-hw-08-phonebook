@@ -1,5 +1,5 @@
-import { useEffect, lazy } from 'react';
-//import { useDispatch } from 'react-redux';
+import React from 'react';
+import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from './Layout';
 
@@ -8,8 +8,8 @@ const RegisterView = lazy(() => import('../views/RegisterView'));
 const LoginView = lazy(() => import('../views/LoginView'));
 const PhonebookView = lazy(() => import('../views/PhonebookView'));
 
-export default function Phonebook() {
-  //const dispatch = useDispatch();
+export const Phonebook = () => {
+  
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -20,4 +20,4 @@ export default function Phonebook() {
       </Route>
     </Routes>
   );
-}
+};

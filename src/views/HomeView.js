@@ -3,7 +3,7 @@ import React from 'react';
 const HomeView = () => (
   <div>
     <h1>
-      Приветственная страница нашего сервиса{' '}
+      Welcome to the phonebook
       <span role="img" aria-label="Иконка приветствия">
         💁‍♀️
       </span>

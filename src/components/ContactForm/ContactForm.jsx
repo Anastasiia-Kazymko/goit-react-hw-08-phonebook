@@ -1,7 +1,6 @@
-import {
-  useFetchContactsQuery,
-  useAddContactMutation,
-} from '../../redux/contactsAPI';
+import { useSelector, useDispatch } from 'react-redux';
+import { contactsOperations } from 'redux/contacts';
+import { getContacts } from 'redux/contacts/contacts-selectors';
 import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { FormWrapper, AddButton, Input } from './ContactForm.styled';
@@ -16,16 +15,17 @@ export const ContactForm = () => {
     name: '',
     phone: '',
   };
-  const [addContact] = useAddContactMutation();
-  const { data: contacts } = useFetchContactsQuery();
+
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
 
   const handleSubmit = (values, { resetForm }) => {
-    const { name, phone } = values;
+    const { name } = values;
     const addedСontank = contacts.find(contact => contact.name === name);
     if (addedСontank) {
       return alert(`${name} is already in contacts`);
     }
-    addContact({ name, phone });
+    dispatch(contactsOperations.addContact(values));
     resetForm();
   };
 
