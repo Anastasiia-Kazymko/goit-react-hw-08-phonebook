@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { authOperations } from '../redux/auth';
+import { authOperations } from '../../redux/auth';
+import { FormStyled, Button, Title } from '../RegisterView/RegisterView.styled';
 
 export default function LoginView() {
   const dispatch = useDispatch();
@@ -27,11 +28,11 @@ export default function LoginView() {
 
   return (
     <div>
-      <h1>Log in form</h1>
+      <Title>Log in form</Title>
 
-      <form onSubmit={handleSubmit} autoComplete="off">
+      <FormStyled onSubmit={handleSubmit} autoComplete="off">
         <label>
-          email
+          <p>Email</p>
           <input
             type="email"
             name="email"
@@ -42,7 +43,7 @@ export default function LoginView() {
         </label>
 
         <label>
-          password
+          <p>Password</p>
           <input
             type="password"
             name="password"
@@ -52,8 +53,8 @@ export default function LoginView() {
           />
         </label>
 
-        <button type="submit">Log in</button>
-      </form>
+        <Button type="submit">Log in</Button>
+      </FormStyled>
     </div>
   );
 }

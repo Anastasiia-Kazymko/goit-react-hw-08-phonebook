@@ -2,11 +2,11 @@ import React from 'react';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
-import { Container } from './PhonebookView.styled';
+import { Container, Title } from './PhonebookView.styled';
 
 const PhonebookView = () => (
   <Container>
-    <h1>Phonebook</h1>
+    <Title>Phonebook</Title>
     <ContactForm />
     <h2>Contacts</h2>
     <Filter />

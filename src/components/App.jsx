@@ -1,15 +1,16 @@
 import React from 'react';
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Layout } from './Layout';
+import { Layout } from './Layout/Layout';
 
-const HomeView = lazy(() => import('../views/HomeView'));
-const RegisterView = lazy(() => import('../views/RegisterView'));
-const LoginView = lazy(() => import('../views/LoginView'));
-const PhonebookView = lazy(() => import('../views/PhonebookView'));
+const HomeView = lazy(() => import('../views/HomeView/HomeView'));
+const RegisterView = lazy(() => import('../views/RegisterView/RegisterView'));
+const LoginView = lazy(() => import('../views/LoginView/LoginView'));
+const PhonebookView = lazy(() =>
+  import('../views/PhonebookView/PhonebookView')
+);
 
 export const Phonebook = () => {
-  
   return (
     <Routes>
       <Route path="/" element={<Layout />}>

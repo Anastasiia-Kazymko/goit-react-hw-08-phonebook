@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Helmet } from 'react-helmet';
-import { authOperations } from '../redux/auth';
+import { authOperations } from '../../redux/auth';
+import { FormStyled, Button, Title } from './RegisterView.styled';
 
 export default function RegisterView() {
   const dispatch = useDispatch();
@@ -32,13 +32,11 @@ export default function RegisterView() {
 
   return (
     <div>
-      <Helmet>
-        <title>Registration</title>
-      </Helmet>
+      <Title>Registration</Title>
 
-      <form onSubmit={handleSubmit} autoComplete="off">
+      <FormStyled onSubmit={handleSubmit} autoComplete="off">
         <label>
-          Имя
+          <p>Name</p>
           <input
             type="text"
             name="name"
@@ -49,7 +47,7 @@ export default function RegisterView() {
         </label>
 
         <label>
-          Почта
+          <p>E-mail</p>
           <input
             type="email"
             name="email"
@@ -60,7 +58,7 @@ export default function RegisterView() {
         </label>
 
         <label>
-          Пароль
+          <p>Password</p>
           <input
             type="password"
             name="password"
@@ -70,8 +68,8 @@ export default function RegisterView() {
           />
         </label>
 
-        <button type="submit">Registration</button>
-      </form>
+        <Button type="submit">Registration</Button>
+      </FormStyled>
     </div>
   );
 }
