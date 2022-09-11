@@ -8,30 +8,35 @@ const contactsSlice = createSlice({
     isLoad: false,
   },
   extraReducers: {
-    [contactOperations.fetchContacts.fulfilled](state, action) {
-      state.contacts = action.payload;
-      state.isLoading = false;
+    [contactOperations.fetchContacts.pending](state) {
+      state.isLoad = true;
     },
-    [contactOperations.fetchContacts.pending](state, _) {
-      state.isLoading = true;
+    [contactOperations.fetchContacts.fulfilled](state, action) {
+      state.items = action.payload;
+      state.isLoad = false;
+    },
+    [contactOperations.fetchContacts.rejected](state) {
+      state.isLoad = false;
     },
     [contactOperations.addContact.fulfilled](state, action) {
-      state.contacts.push(action.payload);
-      state.isLoading = false;
+      state.items.push(action.payload);
+      state.isLoad = false;
     },
-    [contactOperations.addContact.pending](state, _) {
-      state.isLoading = true;
+    [contactOperations.addContact.pending](state) {
+      state.isLoad = true;
     },
-    [contactOperations.addContact.rejected](state, action) {
-      state.isLoading = false;
-      state.error = action.payload;
+    [contactOperations.addContact.rejected](state) {
+      state.isLoad = false;
     },
     [contactOperations.deleteContact.fulfilled](state, action) {
-      state.contacts = state.contacts.filter(({ id }) => id !== action.payload);
-      state.isLoading = false;
+      state.items = state.items.filter(({ id }) => id !== action.payload);
+      state.isLoad = false;
     },
-    [contactOperations.deleteContact.pending](state, _) {
-      state.isLoading = true;
+    [contactOperations.deleteContact.pending](state) {
+      state.isLoad = true;
+    },
+    [contactOperations.deleteContact.rejected](state) {
+      state.isLoad = false;
     },
   },
 });

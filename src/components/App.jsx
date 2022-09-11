@@ -29,7 +29,7 @@ export const Phonebook = () => {
         <Route
           path="/register"
           element={
-            <PublicRoute restricted>
+            <PublicRoute restricted redirectTo="/phonebook">
               <RegisterView />
             </PublicRoute>
           }
@@ -37,7 +37,7 @@ export const Phonebook = () => {
         <Route
           path="/login"
           element={
-            <PublicRoute restricted>
+            <PublicRoute restricted redirectTo="/phonebook">
               <LoginView />
             </PublicRoute>
           }
@@ -45,7 +45,7 @@ export const Phonebook = () => {
         <Route
           path="/phonebook"
           element={
-            <PrivateRoute>
+            <PrivateRoute redirectTo="/login">
               <PhonebookView />
             </PrivateRoute>
           }

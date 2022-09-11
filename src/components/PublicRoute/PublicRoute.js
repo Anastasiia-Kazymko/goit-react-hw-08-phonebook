@@ -1,8 +1,8 @@
-import { useSelector } from 'react-redux';
+import { useAuth } from 'hooks';
 import { Navigate } from 'react-router-dom';
 
 export default function PublicRoute({ children, restricted = false }) {
-  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  const { isLoggedIn } = useAuth();
   const shouldRedirect = isLoggedIn && restricted;
-  return shouldRedirect ? <Navigate to="/contacts" /> : children;
+  return shouldRedirect ? <Navigate to="/phonebook" /> : children;
 }
