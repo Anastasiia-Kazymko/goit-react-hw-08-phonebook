@@ -2,8 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-//axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
-
 const fetchContacts = createAsyncThunk('/contacts/fetchContacts', async () => {
   try {
     const { data } = await axios.get('/contacts');

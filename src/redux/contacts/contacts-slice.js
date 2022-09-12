@@ -19,7 +19,7 @@ const contactsSlice = createSlice({
       state.isLoad = false;
     },
     [contactOperations.addContact.fulfilled](state, action) {
-      state.items.push(action.payload);
+      state.items = [...state.items, action.payload];
       state.isLoad = false;
     },
     [contactOperations.addContact.pending](state) {

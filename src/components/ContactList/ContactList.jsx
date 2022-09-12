@@ -11,6 +11,7 @@ export const ContactList = () => {
   const filter = useSelector(getFilter);
   const contacts = useSelector(getContacts);
   const { deleteContact } = contactsOperations;
+  console.log(contacts);
 
   const filterContacts = contacts?.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
@@ -24,9 +25,9 @@ export const ContactList = () => {
   return (
     <ul>
       {contacts &&
-        filterContacts.map(({ id, name, phone }) => (
+        filterContacts.map(({ id, name, number }) => (
           <Item key={id}>
-            {name}: {phone}
+            {name}: {number}
             <DelButton type="button" onClick={() => onDeleteContact(id)}>
               Delete
             </DelButton>

@@ -1,3 +1,2 @@
-export const getContacts = state => state.contacts.contacts;
-export const getStatus = state => state.contacts.status;
-export const getError = state => state.contacts.error;
+export const getContacts = state => state.contacts.items;
+export const getStatus = state => state.contacts.isLoad;

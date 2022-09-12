@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { Form, Field } from 'formik';
 
-export const FormWrapper = styled(Form)`
+export const FormWrapper = styled.form`
   padding: 15px 10px;
   width: 210px;
   height: 190px;
@@ -12,7 +11,7 @@ export const FormWrapper = styled(Form)`
   align-items: center;
 `;
 
-export const Input = styled(Field)`
+export const Input = styled.input`
   width: 200px;
 `;
 export const AddButton = styled.button`
