@@ -8,29 +8,27 @@ import * as yup from 'yup';
 import { FormWrapper, AddButton, Input } from './ContactForm.styled';
 
 let schema = yup.object().shape({
-  name: yup.string(),
-  phone: yup.string(),
+  name: yup.string().required(),
+  phone: yup.number().required(),
 });
+
+const initialValues = {
+  name: '',
+  phone: '',
+};
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
-  const initialValues = {
-    name: '',
-    phone: '',
-  };
 
-  const handleChange = e => {
-    const { name, value } = e.currentTarget;
+  const handleChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'name':
-        setName(value);
-        break;
+        return setName(value);
       case 'phone':
-        setPhone(value);
-        break;
+        return setPhone(value);
       default:
         return;
     }
@@ -38,10 +36,15 @@ export const ContactForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const addedСontank = contacts.find(contact => contact.name === name);
+    const addedСontank = contacts.find(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
     if (addedСontank) {
       Notify.failure(`${name} is already in contacts`);
-    } else dispatch(contactsOperations.addContact(name, phone));
+      return;
+    }
+    dispatch(contactsOperations.addContact({ name, phone }));
+
     setName('');
     setPhone('');
   };
