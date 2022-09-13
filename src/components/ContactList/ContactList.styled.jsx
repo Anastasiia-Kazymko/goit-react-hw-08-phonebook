@@ -12,6 +12,6 @@ export const DelButton = styled.button`
   transition: background-color 250ms linear;
   &:hover,
   &:focus {
-    background-color: #0088ff;
+    background-color: #dd3b00;
   }
 `;
