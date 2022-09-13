@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import Notiflix from 'notiflix';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useDispatch } from 'react-redux';
 import { contactsOperations } from 'redux/contacts/index';
 import { getFilter } from 'redux/filterSlise';
@@ -11,7 +11,6 @@ export const ContactList = () => {
   const filter = useSelector(getFilter);
   const contacts = useSelector(getContacts);
   const { deleteContact } = contactsOperations;
-  console.log(contacts);
 
   const filterContacts = contacts?.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
@@ -19,7 +18,7 @@ export const ContactList = () => {
 
   const onDeleteContact = id => {
     dispatch(deleteContact(id));
-    Notiflix.Notify.success('Сontact removed from list');
+    Notify.success('Сontact removed from list');
   };
 
   return (
