@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useDispatch } from 'react-redux';
 import { contactsOperations } from 'redux/contacts/index';
 import { getFilter } from 'redux/filterSlise';
@@ -18,7 +17,6 @@ export const ContactList = () => {
 
   const onDeleteContact = id => {
     dispatch(deleteContact(id));
-    Notify.success('Сontact removed from list');
   };
 
   return (
